@@ -6,22 +6,7 @@
     <title>Document</title>
   </head>
   <body>
-    <header>
-      <h1>{{ name }}</h1>
-      <h2>DevOps Engineer</h2>
-
-      <nav>
-        <ul>
-          <li>
-            <a href="/home">Home</a>
-          </li>
-          <li>
-            <a href="/contact">Kontakt</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
+    {% include "header.html" %}
     <main>
       <section>
         <h3>Etwas über mich</h3>
@@ -36,9 +21,9 @@
         <h3>Skills</h3>
         <p>Mit diesen Tools und Sprachen arbeite ich jeden Tag</p>
         <ul>
-          <li>{{ skill1 }}</li>
-          <li>{{ skill2 }}</li>
-          <li>{{ skill3 }}</li>
+          {% for skill in skillsList %}
+          <li>{{ skill }}</li>
+          {% endfor %}
         </ul>
       </section>
       <section>
@@ -52,16 +37,6 @@
         <p>Sie können mich zu jeder Zeit über das Kontaktformular erreichen.</p>
       </section>
     </main>
-
-    <footer>
-      <h3>Credits</h3>
-      <p>
-        Vielen Dank. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-        Asperiores nulla cupiditate sit, veritatis, quam fugiat perferendis
-        autem modi tenetur similique numquam nihil? Molestias iusto distinctio
-        pariatur nisi eius quasi sunt?
-      </p>
-      <a href="https://techstarter.de/" target="_blank">Techstarter</a>
-    </footer>
+    {% include "footer.html" %}
   </body>
 </html>

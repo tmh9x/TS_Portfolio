@@ -3,16 +3,22 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
-templates = Jinja2Templates(directory="./")
+templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     name = "Thomas Hermanu"
-    skill1 = "HTML"
-    skill2 = "CSS"
-    skill3 = "JavaScript"
-    return templates.TemplateResponse("index.html", {"request": request, "name": name, "skill1": skill1, "skill2":skill2, "skill3": skill3})
+    skillsList = ["HTML","CSS","JavaScript"]
+    return templates.TemplateResponse("index.html", {"request": request, "name": name, "skillsList": skillsList})
+
+@app.get("/contact", response_class=HTMLResponse)
+async def get_form(request: Request): 
+    return templates.TemplateResponse("contact.html", {"request": request })
+
+@app.post("/contact", response_class=HTMLResponse)
+async def post_data(request: Request): 
+    return templates.TemplateResponse("response.html", {"request": request})
 
 if __name__ == "__main__":
     import uvicorn
